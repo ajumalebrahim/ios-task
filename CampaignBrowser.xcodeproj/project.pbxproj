@@ -205,7 +205,6 @@
 				23F7B5931F5958F300154DD9 /* Frameworks */,
 				23F7B5941F5958F300154DD9 /* Resources */,
 				928D197F2B3EC2A944182FC0 /* [CP] Embed Pods Frameworks */,
-				EC8859DD7749A9A173682081 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -335,21 +334,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CampaignBrowser/Pods-CampaignBrowser-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC8859DD7749A9A173682081 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CampaignBrowser/Pods-CampaignBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

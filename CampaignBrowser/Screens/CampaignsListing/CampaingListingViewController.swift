@@ -23,11 +23,22 @@ class CampaignListingViewController: UIViewController {
         super.viewWillAppear(animated)
 
         // Load the campaign list and display it as soon as it is available.
-        ServiceLocator.instance.networkingService
-            .createObservableResponse(request: CampaignListingRequest())
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] campaigns in
+        let netService = ServiceLocator.instance.networkingService
+        let campService = netService.createObservableResponse(request: CampaignListingRequest())
+            campService.observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { [weak self] campaigns in
                 self?.typedView.display(campaigns: campaigns)
+            },
+                onError: { [weak self] error in
+                    let alert = UIAlertController.init(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let tryAgain = UIAlertAction.init(title: "Try Again", style: .default, handler: { (action) in
+                        campService.retry().observeOn(MainScheduler.instance).subscribe(onNext: {campaigns in
+                            self?.typedView.display(campaigns: campaigns)
+                        }).disposed(by: (self?.disposeBag)!)
+                    })
+                    alert.addAction(tryAgain)
+                    self?.present(alert, animated: true, completion:nil)
             })
             .addDisposableTo(disposeBag)
     }
